@@ -1,0 +1,22 @@
+---
+#This workflow will execute on pull request to dev branch
+name: PR Workflow
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: get the code
+              uses: actions/checkout@v6
+            - name: Compile the code
+              uses: mvn compile
+            - name: test the code
+              uses: mvn test
+            - name: Create the package
+              uses: mvn package
+        
